@@ -23,12 +23,7 @@
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 0.75rem; }
   .field-row.full { grid-template-columns: 1fr; }
   label { font-size: 13px; color: #555; display: block; margin-bottom: 4px; }
-  input, select, textarea {
-    width: 100%; font-size: 14px; padding: 8px 10px;
-    border: 1px solid #ddd; border-radius: 8px; background: #fafafa;
-    color: #1a1a1a; outline: none; font-family: inherit;
-    transition: border-color 0.15s;
-  }
+  input, select, textarea { width: 100%; font-size: 14px; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px; background: #fafafa; color: #1a1a1a; outline: none; font-family: inherit; transition: border-color 0.15s; }
   input:focus, select:focus, textarea:focus { border-color: #1a1a1a; background: #fff; }
   textarea { resize: vertical; min-height: 64px; }
   .ra-block { border: 1px solid #e5e5e5; border-radius: 10px; padding: 1rem; margin-bottom: 0.75rem; background: #fafafa; }
@@ -61,11 +56,7 @@
   .success-screen .icon { font-size: 48px; margin-bottom: 1rem; }
   .success-screen h2 { font-size: 20px; font-weight: 600; margin-bottom: 0.5rem; }
   .success-screen p { font-size: 14px; color: #666; }
-  @media (max-width: 480px) {
-    .field-row { grid-template-columns: 1fr; }
-    .ra-grid { grid-template-columns: 1fr; }
-    .summary-grid { grid-template-columns: 1fr 1fr; }
-  }
+  @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } .ra-grid { grid-template-columns: 1fr; } .summary-grid { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
@@ -74,7 +65,6 @@
     <h1>Seguiment de programació</h1>
     <p>Cicle d'Administració i Finances · Curs 2024–2025</p>
   </div>
-
   <div class="steps" id="steps-bar">
     <span class="step-dot active" id="s1">1</span>
     <span class="step-label active" id="sl1">Docent i mòdul</span>
@@ -85,8 +75,6 @@
     <span class="step-dot" id="s3">3</span>
     <span class="step-label" id="sl3">Observacions</span>
   </div>
-
-  <!-- Pàgina 1 -->
   <div id="page1">
     <div class="card">
       <div class="section-label">Dades del docent</div>
@@ -98,26 +86,12 @@
     <div class="card">
       <div class="section-label">Mòdul</div>
       <div class="field-row">
-        <div>
-          <label>Curs *</label>
-          <select id="curs">
-            <option value="">Selecciona...</option>
-            <option>1r curs</option>
-            <option>2n curs</option>
-          </select>
-        </div>
-        <div>
-          <label>Mòdul professional *</label>
-          <select id="modul">
-            <option value="">Selecciona el mòdul...</option>
-          </select>
-        </div>
+        <div><label>Curs *</label><select id="curs"><option value="">Selecciona...</option><option>1r curs</option><option>2n curs</option></select></div>
+        <div><label>Mòdul professional *</label><select id="modul"><option value="">Selecciona el mòdul...</option></select></div>
       </div>
     </div>
     <button class="btn btn-primary" onclick="anarPagina2()">Continuar →</button>
   </div>
-
-  <!-- Pàgina 2 -->
   <div id="page2" class="hidden">
     <div id="ra-container"></div>
     <div class="summary-card hidden" id="summary-card">
@@ -131,23 +105,16 @@
     <button class="btn btn-back" onclick="anarPagina1()">← Tornar</button>
     <button class="btn btn-primary" onclick="anarPagina3()">Continuar →</button>
   </div>
-
-  <!-- Pàgina 3 -->
   <div id="page3" class="hidden">
     <div class="card">
       <div class="section-label">Observacions generals del mòdul</div>
       <div class="field-row full" style="margin-bottom:0">
-        <div>
-          <label>Valoració general i propostes de millora per al proper curs</label>
-          <textarea id="observacions" placeholder="Escriu aquí qualsevol observació general sobre el desenvolupament del mòdul..."></textarea>
-        </div>
+        <div><label>Valoració general i propostes de millora per al proper curs</label><textarea id="observacions" placeholder="Escriu aquí qualsevol observació general sobre el desenvolupament del mòdul..."></textarea></div>
       </div>
     </div>
     <button class="btn btn-back" onclick="anarPagina2()">← Tornar</button>
     <button class="btn btn-primary" id="btn-enviar" onclick="enviar()">Enviar informe</button>
   </div>
-
-  <!-- Pantalla d'èxit -->
   <div id="page-ok" class="hidden">
     <div class="success-screen">
       <div class="icon">✅</div>
@@ -156,12 +123,9 @@
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
-
 <script>
-const SCRIPT_URL = const SCRIPT_URL = "https://script.google.com/a/macros/intermunicipal.cat/s/AKfycbxgF91pOzoQhkgwkrxggW6y7hSL0QLSdbut1ZXZgBWS6N5WIPAtMBAZZZ_UJL8w5UanZw/exec";
-
+const SCRIPT_URL = "https://script.google.com/a/macros/intermunicipal.cat/s/AKfycbxgF91pOzoQhkgwkrxggW6y7hSL0QLSdbut1ZXZgBWS6N5WIPAtMBAZZZ_UJL8w5UanZw/exec";
 const MODULS = [
   { codi:"0647", nom:"Gestió de la documentació jurídica i empresarial", ra:5 },
   { codi:"0648", nom:"Recursos humans i responsabilitat social corporativa", ra:5 },
@@ -182,32 +146,10 @@ const MODULS = [
   { codi:"0657", nom:"Projecte intermodular d'administració i finances", ra:4 },
   { codi:"OPT", nom:"Mòdul professional optatiu", ra:3 },
 ];
-
 const sel = document.getElementById("modul");
-MODULS.forEach(m => {
-  const o = document.createElement("option");
-  o.value = m.codi;
-  o.textContent = m.codi + " · " + m.nom;
-  sel.appendChild(o);
-});
-
-function showToast(msg, dur=3000) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  setTimeout(() => t.classList.remove("show"), dur);
-}
-
-function setStep(n) {
-  [1,2,3].forEach(i => {
-    const dot = document.getElementById("s"+i);
-    const lbl = document.getElementById("sl"+i);
-    dot.className = "step-dot" + (i < n ? " done" : i === n ? " active" : "");
-    dot.textContent = i < n ? "✓" : i;
-    lbl.className = "step-label" + (i === n ? " active" : "");
-  });
-}
-
+MODULS.forEach(m => { const o = document.createElement("option"); o.value = m.codi; o.textContent = m.codi + " · " + m.nom; sel.appendChild(o); });
+function showToast(msg) { const t = document.getElementById("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 3000); }
+function setStep(n) { [1,2,3].forEach(i => { const d = document.getElementById("s"+i); const l = document.getElementById("sl"+i); d.className = "step-dot"+(i<n?" done":i===n?" active":""); d.textContent = i<n?"✓":i; l.className = "step-label"+(i===n?" active":""); }); }
 function carregarRA() {
   const codi = document.getElementById("modul").value;
   const modul = MODULS.find(m => m.codi === codi);
@@ -215,180 +157,88 @@ function carregarRA() {
   cont.innerHTML = "";
   document.getElementById("summary-card").classList.add("hidden");
   if (!modul) return;
-
   for (let i = 1; i <= modul.ra; i++) {
     const div = document.createElement("div");
     div.className = "ra-block";
-    div.id = "ra-block-" + i;
-    div.innerHTML = `
-      <div class="ra-header">
-        <span class="ra-title">RA ${i}</span>
-        <span class="pct-badge pct-neutral" id="badge-${i}">—</span>
-      </div>
-      <div class="ra-grid">
-        <div><label>Hores programades</label><input type="number" min="0" step="0.5" id="prog-${i}" placeholder="0" oninput="calcPct(${i})"></div>
-        <div><label>Hores realitzades</label><input type="number" min="0" step="0.5" id="real-${i}" placeholder="0" oninput="calcPct(${i})"></div>
-      </div>
-      <div class="extra-block" id="extra-${i}">
-        <div style="margin-bottom:0.5rem">
-          <label id="motius-label-${i}">Motius de l'incompliment</label>
-          <textarea id="motius-${i}" placeholder="Per què no s'ha pogut assolir el 100%?"></textarea>
-        </div>
-        <div>
-          <label>Proposta de mesures correctores</label>
-          <textarea id="mesures-${i}" placeholder="Quines mesures es proposen per al proper curs?"></textarea>
-        </div>
-      </div>`;
+    div.innerHTML = `<div class="ra-header"><span class="ra-title">RA ${i}</span><span class="pct-badge pct-neutral" id="badge-${i}">—</span></div><div class="ra-grid"><div><label>Hores programades</label><input type="number" min="0" step="0.5" id="prog-${i}" placeholder="0" oninput="calcPct(${i})"></div><div><label>Hores realitzades</label><input type="number" min="0" step="0.5" id="real-${i}" placeholder="0" oninput="calcPct(${i})"></div></div><div class="extra-block" id="extra-${i}"><div style="margin-bottom:0.5rem"><label id="mlbl-${i}">Motius</label><textarea id="motius-${i}" placeholder="..."></textarea></div><div><label>Proposta de mesures correctores</label><textarea id="mesures-${i}" placeholder="Quines mesures es proposen per al proper curs?"></textarea></div></div>`;
     cont.appendChild(div);
   }
 }
-
 function calcPct(i) {
-  const prog = parseFloat(document.getElementById("prog-"+i).value) || 0;
-  const real = parseFloat(document.getElementById("real-"+i).value) || 0;
+  const prog = parseFloat(document.getElementById("prog-"+i).value)||0;
+  const real = parseFloat(document.getElementById("real-"+i).value)||0;
   const badge = document.getElementById("badge-"+i);
   const extra = document.getElementById("extra-"+i);
-  const motiusLabel = document.getElementById("motius-label-"+i);
-
-  if (prog === 0) {
-    badge.textContent = "—";
-    badge.className = "pct-badge pct-neutral";
-    extra.classList.remove("visible");
-    actualitzarResum(); return;
-  }
-
-  const pct = Math.round((real / prog) * 100);
-  badge.textContent = pct + "%";
-
-  if (pct >= 100) {
-    badge.className = "pct-badge " + (pct > 100 ? "pct-over" : "pct-ok");
-    if (pct > 100) {
-      extra.classList.add("visible");
-      motiusLabel.textContent = "Motius de la superació del 100%";
-      document.getElementById("motius-"+i).placeholder = "Per què s'han fet més hores de les programades?";
-    } else {
-      extra.classList.remove("visible");
-    }
-  } else if (pct >= 75) {
-    badge.className = "pct-badge pct-warn";
-    extra.classList.add("visible");
-    motiusLabel.textContent = "Motius de l'incompliment";
-    document.getElementById("motius-"+i).placeholder = "Per què no s'ha pogut assolir el 100%?";
-  } else {
-    badge.className = "pct-badge pct-err";
-    extra.classList.add("visible");
-    motiusLabel.textContent = "Motius de l'incompliment";
-    document.getElementById("motius-"+i).placeholder = "Per què no s'ha pogut assolir el 100%?";
-  }
+  const mlbl = document.getElementById("mlbl-"+i);
+  if (prog===0) { badge.textContent="—"; badge.className="pct-badge pct-neutral"; extra.classList.remove("visible"); actualitzarResum(); return; }
+  const pct = Math.round((real/prog)*100);
+  badge.textContent = pct+"%";
+  if (pct>100) { badge.className="pct-badge pct-over"; extra.classList.add("visible"); mlbl.textContent="Motius de la superació del 100%"; document.getElementById("motius-"+i).placeholder="Per què s'han fet més hores de les programades?"; }
+  else if (pct===100) { badge.className="pct-badge pct-ok"; extra.classList.remove("visible"); }
+  else if (pct>=75) { badge.className="pct-badge pct-warn"; extra.classList.add("visible"); mlbl.textContent="Motius de l'incompliment"; document.getElementById("motius-"+i).placeholder="Per què no s'ha pogut assolir el 100%?"; }
+  else { badge.className="pct-badge pct-err"; extra.classList.add("visible"); mlbl.textContent="Motius de l'incompliment"; document.getElementById("motius-"+i).placeholder="Per què no s'ha pogut assolir el 100%?"; }
   actualitzarResum();
 }
-
 function actualitzarResum() {
   const codi = document.getElementById("modul").value;
   const modul = MODULS.find(m => m.codi === codi);
   if (!modul) return;
-  let totalProg = 0, totalReal = 0, count = 0;
-  for (let i = 1; i <= modul.ra; i++) {
-    const p = parseFloat(document.getElementById("prog-"+i)?.value) || 0;
-    const r = parseFloat(document.getElementById("real-"+i)?.value) || 0;
-    if (p > 0) { totalProg += p; totalReal += r; count++; }
-  }
+  let tp=0, tr=0, c=0;
+  for (let i=1; i<=modul.ra; i++) { const p=parseFloat(document.getElementById("prog-"+i)?.value)||0; const r=parseFloat(document.getElementById("real-"+i)?.value)||0; if(p>0){tp+=p;tr+=r;c++;} }
   const card = document.getElementById("summary-card");
-  if (count === 0) { card.classList.add("hidden"); return; }
+  if (c===0) { card.classList.add("hidden"); return; }
   card.classList.remove("hidden");
-  const pct = Math.round((totalReal / totalProg) * 100);
-  document.getElementById("sum-prog").textContent = totalProg + "h";
-  document.getElementById("sum-real").textContent = totalReal + "h";
-  const pctEl = document.getElementById("sum-pct");
-  pctEl.textContent = pct + "%";
-  pctEl.style.color = pct >= 100 ? "#166534" : pct >= 75 ? "#854d0e" : "#991b1b";
+  const pct = Math.round((tr/tp)*100);
+  document.getElementById("sum-prog").textContent = tp+"h";
+  document.getElementById("sum-real").textContent = tr+"h";
+  const pe = document.getElementById("sum-pct");
+  pe.textContent = pct+"%";
+  pe.style.color = pct>=100?"#166534":pct>=75?"#854d0e":"#991b1b";
 }
-
-function anarPagina1() {
-  document.getElementById("page2").classList.add("hidden");
-  document.getElementById("page1").classList.remove("hidden");
-  setStep(1);
-}
-
+function anarPagina1() { document.getElementById("page2").classList.add("hidden"); document.getElementById("page1").classList.remove("hidden"); setStep(1); }
 function anarPagina2() {
-  const nom = document.getElementById("nom").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const curs = document.getElementById("curs").value;
-  const modul = document.getElementById("modul").value;
-  if (!nom || !email || !curs || !modul) {
-    showToast("⚠️ Omple tots els camps abans de continuar.");
-    return;
-  }
+  const nom=document.getElementById("nom").value.trim();
+  const email=document.getElementById("email").value.trim();
+  const curs=document.getElementById("curs").value;
+  const modul=document.getElementById("modul").value;
+  if (!nom||!email||!curs||!modul) { showToast("⚠️ Omple tots els camps abans de continuar."); return; }
   carregarRA();
   document.getElementById("page1").classList.add("hidden");
   document.getElementById("page2").classList.remove("hidden");
-  setStep(2);
-  window.scrollTo(0,0);
+  setStep(2); window.scrollTo(0,0);
 }
-
 function anarPagina3() {
-  const codi = document.getElementById("modul").value;
-  const modul = MODULS.find(m => m.codi === codi);
-  let almenysUn = false;
-  for (let i = 1; i <= modul.ra; i++) {
-    const p = parseFloat(document.getElementById("prog-"+i).value) || 0;
-    if (p > 0) { almenysUn = true; break; }
-  }
-  if (!almenysUn) {
-    showToast("⚠️ Introdueix les hores d'almenys un RA.");
-    return;
-  }
+  const codi=document.getElementById("modul").value;
+  const modul=MODULS.find(m=>m.codi===codi);
+  let ok=false;
+  for (let i=1;i<=modul.ra;i++) { if((parseFloat(document.getElementById("prog-"+i).value)||0)>0){ok=true;break;} }
+  if (!ok) { showToast("⚠️ Introdueix les hores d'almenys un RA."); return; }
   document.getElementById("page2").classList.add("hidden");
   document.getElementById("page3").classList.remove("hidden");
-  setStep(3);
-  window.scrollTo(0,0);
+  setStep(3); window.scrollTo(0,0);
 }
-
 async function enviar() {
-  const btn = document.getElementById("btn-enviar");
-  btn.disabled = true;
-  btn.textContent = "Enviant...";
-
-  const codi = document.getElementById("modul").value;
-  const modul = MODULS.find(m => m.codi === codi);
-  const ras = [];
-
-  for (let i = 1; i <= modul.ra; i++) {
-    const prog = parseFloat(document.getElementById("prog-"+i).value) || 0;
-    const real = parseFloat(document.getElementById("real-"+i).value) || 0;
-    const pct = prog > 0 ? Math.round((real/prog)*100) : 0;
-    ras.push({
-      num: "RA " + i,
-      prog, real, pct,
-      motius: document.getElementById("motius-"+i)?.value || "",
-      mesures: document.getElementById("mesures-"+i)?.value || ""
-    });
+  const btn=document.getElementById("btn-enviar");
+  btn.disabled=true; btn.textContent="Enviant...";
+  const codi=document.getElementById("modul").value;
+  const modul=MODULS.find(m=>m.codi===codi);
+  const ras=[];
+  for (let i=1;i<=modul.ra;i++) {
+    const prog=parseFloat(document.getElementById("prog-"+i).value)||0;
+    const real=parseFloat(document.getElementById("real-"+i).value)||0;
+    const pct=prog>0?Math.round((real/prog)*100):0;
+    ras.push({num:"RA "+i, prog, real, pct, motius:document.getElementById("motius-"+i)?.value||"", mesures:document.getElementById("mesures-"+i)?.value||""});
   }
-
-  const payload = {
-    nom: document.getElementById("nom").value.trim(),
-    email: document.getElementById("email").value.trim(),
-    curs: document.getElementById("curs").value,
-    modul: codi + " · " + modul.nom,
-    observacions: document.getElementById("observacions").value,
-    ras
-  };
-
+  const payload={nom:document.getElementById("nom").value.trim(), email:document.getElementById("email").value.trim(), curs:document.getElementById("curs").value, modul:codi+" · "+modul.nom, observacions:document.getElementById("observacions").value, ras};
   try {
-    await fetch(SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+    await fetch(SCRIPT_URL, {method:"POST", mode:"no-cors", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload)});
     document.getElementById("page3").classList.add("hidden");
     document.getElementById("steps-bar").classList.add("hidden");
     document.getElementById("page-ok").classList.remove("hidden");
     window.scrollTo(0,0);
   } catch(err) {
     showToast("❌ Error en enviar. Torna-ho a intentar.");
-    btn.disabled = false;
-    btn.textContent = "Enviar informe";
+    btn.disabled=false; btn.textContent="Enviar informe";
   }
 }
 </script>
